@@ -10,15 +10,16 @@ const App = () => {
   EStyleSheet.build({ $rem: entireScreenWidth / 320 })
 
   const [currentScreen, setCurrentScreen] = useState('splash')
-  const mainScreen = currentScreen === 'splash'
-    ? <SplashScreen />
-    : <LoginScreen />
 
   useEffect(() => {
     setTimeout(() => {
       setCurrentScreen('Login')
     }, 2000)
   })
+
+  const mainScreen = currentScreen === 'splash'
+    ? <SplashScreen />
+    : <LoginScreen />
 
   return mainScreen
 }

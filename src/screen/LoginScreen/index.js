@@ -5,60 +5,77 @@ import EStyleSheet from 'react-native-extended-stylesheet'
 import logo from '../../assets/mq.png'
 
 const LoginScreen = () => {
+  return (
+    <View style={styles.container}>
+      <RenderStatusBar />
+
+      <KeyboardAvoidingView>
+        <RenderLogo />
+
+        <RenderForm />
+      </KeyboardAvoidingView>
+    </View>
+  )
+}
+
+const RenderStatusBar = () => {
+  return (
+    <StatusBar
+      translucent
+      backgroundColor='rgb(32, 53, 70)'
+      barStyle='light-content'
+    />
+  )
+}
+
+const RenderLogo = () => {
+  return (
+    <View style={styles.wrapperLogo}>
+      <Image
+        source={logo}
+        style={styles.logo}
+      />
+
+      <Text style={styles.titleLogin}>
+        Login
+      </Text>
+    </View>
+  )
+}
+
+const RenderForm = () => {
   const txtPass = useRef(null)
 
   return (
-    <View style={styles.container}>
-      <StatusBar
-        translucent
-        backgroundColor='rgb(32, 53, 70)'
-        barStyle='light-content'
+    <View style={styles.wrapperForm}>
+      <TextInput
+        style={styles.inputForm}
+        placeholder='Enter Username/Email'
+        placeholderTextColor='rgba(255, 255, 255, 0.6)'
+        keyboardType='email-address'
+        returnKeyType='next'
+        autoCorrect={false}
+        onSubmitEditing={() => txtPass.current.focus()}
       />
 
-      <KeyboardAvoidingView>
-        <View style={styles.wrapperLogo}>
-          <Image
-            source={logo}
-            style={styles.logo}
-          />
+      <TextInput
+        ref={txtPass}
+        style={styles.inputForm}
+        placeholder='Enter Password'
+        placeholderTextColor='rgba(255, 255, 255, 0.6)'
+        returnKeyType='go'
+        secureTextEntry
+        autoCorrect={false}
+      />
 
-          <Text style={styles.titleLogin}>
-            Login
-          </Text>
-        </View>
-
-        <View style={styles.wrapperForm}>
-          <TextInput
-            style={styles.inputForm}
-            placeholder='Enter Username/Email'
-            placeholderTextColor='rgba(255, 255, 255, 0.6)'
-            keyboardType='email-address'
-            returnKeyType='next'
-            autoCorrect={false}
-            onSubmitEditing={() => txtPass.current.focus()}
-          />
-
-          <TextInput
-            ref={txtPass}
-            style={styles.inputForm}
-            placeholder='Enter Password'
-            placeholderTextColor='rgba(255, 255, 255, 0.6)'
-            returnKeyType='go'
-            secureTextEntry
-            autoCorrect={false}
-          />
-
-          <TouchableOpacity
-            onPress={() => {}}
-            style={styles.wrapperButton}
-          >
-            <Text style={styles.buttonText}>
-              SIGN IN
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-      </KeyboardAvoidingView>
+      <TouchableOpacity
+        onPress={() => {}}
+        style={styles.wrapperButton}
+      >
+        <Text style={styles.buttonText}>
+          SIGN IN
+        </Text>
+      </TouchableOpacity>
     </View>
   )
 }
